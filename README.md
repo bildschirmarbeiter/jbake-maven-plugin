@@ -9,7 +9,7 @@ Add `jbake-maven-plugin` to build section in POM:
           <plugin>
             <groupId>de.bildschirmarbeiter.jbake</groupId>
             <artifactId>jbake-maven-plugin</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1</version>
             <executions>
               <execution>
                 <goals>
@@ -21,7 +21,7 @@ Add `jbake-maven-plugin` to build section in POM:
               <dependency>
                 <groupId>org.thymeleaf</groupId>
                 <artifactId>thymeleaf</artifactId>
-                <version>3.0.6.RELEASE</version>
+                <version>3.0.7.RELEASE</version>
               </dependency>
             </dependencies>
           </plugin>
