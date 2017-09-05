@@ -10,7 +10,7 @@
   </parent>
 
   <artifactId>jbake-maven-plugin</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
   <name>JBake Maven Plugin</name>
@@ -22,7 +22,7 @@
     <connection>scm:git:git://github.com/bildschirmarbeiter/jbake-maven-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:bildschirmarbeiter/jbake-maven-plugin.git</developerConnection>
     <url>https://github.com/bildschirmarbeiter/jbake-maven-plugin/tree/master</url>
-    <tag>jbake-maven-plugin-0.0.1</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <build>
