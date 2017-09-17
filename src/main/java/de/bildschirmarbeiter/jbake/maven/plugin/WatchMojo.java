@@ -1,5 +1,8 @@
 package de.bildschirmarbeiter.jbake.maven.plugin;
 
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.vfs2.FileChangeEvent;
 import org.apache.commons.vfs2.FileListener;
 import org.apache.commons.vfs2.FileObject;
@@ -9,11 +12,18 @@ import org.apache.commons.vfs2.impl.DefaultFileMonitor;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 
 @Mojo(
     name = "watch"
 )
 public class WatchMojo extends BakeMojo {
+
+    @Parameter(
+        property = "jbake.cleanDestination",
+        defaultValue = "true"
+    )
+    protected boolean cleanDestination;
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
@@ -45,21 +55,36 @@ public class WatchMojo extends BakeMojo {
         @Override
         public void fileCreated(final FileChangeEvent fileChangeEvent) throws Exception {
             getLog().info(String.format("File created: %s", fileChangeEvent.getFile().getName()));
-            bake();
+            onFileChange();
         }
 
         @Override
         public void fileDeleted(final FileChangeEvent fileChangeEvent) throws Exception {
             getLog().info(String.format("File deleted: %s", fileChangeEvent.getFile().getName()));
-            bake();
+            onFileChange();
         }
 
         @Override
         public void fileChanged(final FileChangeEvent fileChangeEvent) throws Exception {
             getLog().info(String.format("File changed: %s", fileChangeEvent.getFile().getName()));
-            bake();
+            onFileChange();
         }
 
+    }
+
+    private void onFileChange() throws Exception {
+        if (cleanDestination) {
+            cleanDestination();
+        }
+        bake();
+    }
+
+    private void cleanDestination() throws IOException {
+        getLog().info(String.format("Cleaning destination %s", destination));
+        final long start = System.currentTimeMillis();
+        FileUtils.cleanDirectory(destination);
+        final long end = System.currentTimeMillis();
+        getLog().info(String.format("Cleaned destination %s in %sms", destination, end - start));
     }
 
 }
