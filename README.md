@@ -9,7 +9,7 @@ Add `jbake-maven-plugin` to build section in POM:
           <plugin>
             <groupId>de.bildschirmarbeiter.jbake</groupId>
             <artifactId>jbake-maven-plugin</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.2</version>
             <executions>
               <execution>
                 <goals>
