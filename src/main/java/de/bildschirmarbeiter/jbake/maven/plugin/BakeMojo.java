@@ -34,6 +34,12 @@ public class BakeMojo extends AbstractMojo {
     )
     protected boolean clearCache;
 
+    @Parameter(
+        property = "jbake.failOnError",
+        defaultValue = "true"
+    )
+    protected boolean failOnError;
+
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         getLog().info("Executing Bake Mojo");
@@ -49,6 +55,9 @@ public class BakeMojo extends AbstractMojo {
         final Oven oven = new Oven(source, destination, clearCache);
         oven.setupPaths();
         oven.bake();
+        if (failOnError && !oven.getErrors().isEmpty()) {
+            throw new Exception("Baked with errors: " + oven.getErrors().size());
+        }
     }
 
 }

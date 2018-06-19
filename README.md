@@ -62,6 +62,7 @@ Will _bake_ the site, _watch_ for changes in source (baking again on any change)
 | `destination`      | `target/jbake`   | _all_            | The destination directory where the baked site is written to.<br>Parameter is passed to [JBake Oven](http://jbake.org/docs/2.5.1/#api).                                                                      |
 | `clearCache`       | `true`           | _all_            | The [local cache](http://jbake.org/docs/2.5.1/#persistent_content_store) is cleared when `true`.<br>Parameter is passed to [JBake Oven](http://jbake.org/docs/2.5.1/#api).                                   |
 | `cleanDestination` | `true`           | `watch`, `serve` | All files in destination directory are removed when `true` before baking. This prevents orphaned files, but requires a full bake (see [local cache](http://jbake.org/docs/2.5.1/#persistent_content_store)). |
+| `failOnError`      | `true`           | _all_            | Breaks the build when `true` and errors occur during baking in JBake Oven.                                                                                                                                   |
 | `port`             | `8080`           | `serve`          | The HTTP port Jetty is listening on.<br>Parameter is passed to Jetty Server.                                                                                                                                 |
 
 All parameters can be set on command line with prefix `jbake` as usual, e.g.:
